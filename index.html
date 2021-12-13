@@ -22,8 +22,23 @@
 <section>
   <img class="mySlides" src="ie9HU_aEjROWhwbfEs1NUEg888TcREUPHJaRcByWkXA.jpeg" style="width:20%">
   <img class="mySlides" src="ie9HU_aEjROWhwbfEs1NUEg888TcREUPHJaRcByWkXA.jpeg" style="width:40%">
-  <img class="mySlides" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.scmp.com%2Fcomment%2Fopinion%2Farticle%2F3127569%2Fwhy-bitcoin-and-other-cryptocurrencies-its-kind-are-best-relegated&psig=AOvVaw2NfP2aFoGUbSOPBvNikb7q&ust=1639472665685000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMjoh-G14PQCFQAAAAAdAAAAABAN" style="width:60%">
 </section>
+  
+// Automatic Slideshow - change image every 3 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 3000);
+}
   
   
   
