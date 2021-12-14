@@ -67,14 +67,6 @@
             ask = data['Realtime Currency Exchange Rate']['9. Ask Price']
             document['bid_btc'].text = bid
             document['ask_btc'].text = ask
-
-        def on_complete_eth(req):
-            import json
-            data = json.loads(req.responseText)
-            bid = data['Realtime Currency Exchange Rate']['8. Bid Price']
-            ask = data['Realtime Currency Exchange Rate']['9. Ask Price']
-            document['bid_eth'].text = bid
-            document['ask_eth'].text = ask
             
         def get_price(e):
             req = ajax.ajax()
@@ -89,19 +81,31 @@
 
             req.send()
             
-            time.sleep(5)
-            
-            coin = 'eth'
-            url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
-            req.open('GET', url, True)
-            req.bind('complete', on_complete_eth)
-            req.send()
-            time.sleep(5)
-            
         document['get_price-btn'].bind('click', get_price)
     </script>
 
+    
+<script>
+const userAction = async () => 
+{
+  const response = await fetch('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=btc&to_currency=USD&apikey=B2V50BK9GE7VJU3O');
+  const myJson = await response.json(); //extract JSON from the http response
+  // do something with myJson
+  document.getElementById("bid_eth").text = myJson['Realtime Currency Exchange Rate']['8. Bid Price'];
+}
+
+
+
+
+
 </body>
+</html>
+
+
+</script>
+    
+    
+    </body>
 
 
 </html> 
