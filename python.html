@@ -74,7 +74,7 @@
         def on_complete(req):
             import json
             data = json.loads(req.responseText)
-            test = data['8. Bid Price']
+            test = data['Realtime Currency Exchange Rate']['8. Bid Price']
             document['test'].text = test
 
         def get_joke(e):
