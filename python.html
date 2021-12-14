@@ -34,7 +34,7 @@
     <h1>Test 238</h1>
 
     <button id="test238-btn">Test 238a</button>
-    <div id="test238" class="card">Click the "test238" button</div>
+    <div id="test238" class="card">Click the "test238a" button</div>
 
     <!-- Ajax call -->
     <script type="text/python" id="script3">
@@ -46,13 +46,13 @@
             import json
             data = json.loads(req.responseText)
             test = data['Realtime Currency Exchange Rate']['8. Bid Price']
-            document['test'].text = test
+            document['test238'].text = test
 
         def get_joke(e):
             req = ajax.ajax()
             req.open('GET', url, True)
             req.bind('complete', on_complete)
-            document['test'].text = 'Loading...'
+            document['test238'].text = 'Loading...'
             req.send()
 
         document['test238-btn'].bind('click', get_joke)
