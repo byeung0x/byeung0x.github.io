@@ -62,19 +62,19 @@
 <body onload="brython()">
     <h1>Test 238</h1>
 
-    <button id="joke-btn">Test 238a</button>
+    <button id="test238-btn">Test 238a</button>
     <div id="test238" class="card">Click the "test238" button</div>
 
     <!-- Ajax call -->
     <script type="text/python" id="script3">
         from browser import document, ajax
 
-        url = 'https://api.chucknorris.io/jokes/random'
+        url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
 
         def on_complete(req):
             import json
             data = json.loads(req.responseText)
-            test = data['value']
+            test = data['8. Bid Price']
             document['test'].text = test
 
         def get_joke(e):
