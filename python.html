@@ -56,14 +56,15 @@
     
 <script type="text/javascript" id="script_java_1">
 
-document.getElementById("bid_eth").write(1 + 2);
+document.getElementById("bid_eth").innerHTML = 1 + 2;
+    
 const userAction = async () => 
 {
   const response = await fetch('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=btc&to_currency=USD&apikey=B2V50BK9GE7VJU3O');
   const myJson = await response.json(); //extract JSON from the http response
   // do something with myJson
-  document.getElementById("bid_eth").write(myJson);
-  document.getElementById("ask_eth").write(myJson['Realtime Currency Exchange Rate']['9. Ask Price'])
+  document.getElementById("bid_eth").innerHTML = myJson;
+  document.getElementById("ask_eth").innerHTML = myJson['Realtime Currency Exchange Rate']['9. Ask Price'];
 }
 
 
