@@ -87,7 +87,8 @@
             req.open('GET', url, True)
             req.bind('complete', on_complete_eth)
             req.send()
-
+            time.sleep(5)
+            
         document['get_price-btn'].bind('click', get_price)
     </script>
 
