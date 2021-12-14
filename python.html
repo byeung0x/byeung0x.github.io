@@ -68,7 +68,7 @@
       var ask = await myJson['Realtime Currency Exchange Rate']['9. Ask Price'];
       console.log(bid,ask);
         
-      var response = await fetch('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=' + curr + '&apikey=B2V50BK9GE7VJU3O',
+      var response = await fetch('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + 'eth' + '&to_currency=' + curr + '&apikey=B2V50BK9GE7VJU3O',
       {method:'GET'});
       var myJson = await response.json(); //extract JSON from the http response
       // do something with myJson
