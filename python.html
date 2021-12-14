@@ -59,43 +59,35 @@
 
 </body>
     
-<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<body onload="brython()">
+    <h1>Test 238</h1>
 
-<channel>
-  <title>RTHK News</title>
-  <link>https://rthk.hk/rthk/news/rss/c_expressnews_greaterchina.xml</link>
-  <description>RTHK Local News RSS feed</description>
-  <item>
-    <title>RTHK News 2</title>
-    <link>https://rthk.hk/rthk/news/rss/c_expressnews_clocal.xml</link>
-    <description>New RSS tutorial on W3Schools</description>
-  </item>
-</channel>
+    <button id="joke-btn">Test 238a</button>
+    <div id="test238" class="card">Click the "test238" button</div>
 
-</rss>
+    <!-- Ajax call -->
+    <script type="text/python" id="script3">
+        from browser import document, ajax
 
-<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
- 
-<channel>
-  <title>菜鸟教程首页</title>
-  <link>http://www.runoob.com</link>
-  <description>免费编程教程</description>
-  <item>
-    <title>RSS 教程</title>
-    <link>https://rthk.hk/rthk/news/rss/c_expressnews_greaterchina.xml</link>
-    <description>菜鸟教程 Rss 教程</description>
-  </item>
-  <item>
-    <title>XML 教程</title>
-    <link>http://www.runoob.com/xml</link>
-    <description>菜鸟教程 XML 教程</description>
-  </item>
-</channel>
- 
-</rss>
+        url = 'https://api.chucknorris.io/jokes/random'
 
+        def on_complete(req):
+            import json
+            data = json.loads(req.responseText)
+            test = data['value']
+            document['test'].text = test
+
+        def get_joke(e):
+            req = ajax.ajax()
+            req.open('GET', url, True)
+            req.bind('complete', on_complete)
+            document['test'].text = 'Loading...'
+            req.send()
+
+        document['test238-btn'].bind('click', get_joke)
+    </script>
+
+</body>
 
 
 </html> 
