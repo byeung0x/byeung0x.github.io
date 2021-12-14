@@ -38,15 +38,18 @@
     <table>
       <tr>
         <th>Coin</th>
-        <th>Price</th>
+        <th>Bid</th>
+        <th>Ask</th>
       </tr>
       <tr>
         <td>Bitcoin</td>
-        <td id="price_btc"></td>
+        <td id="bid_btc"></td>
+        <td id="ask_btc"></td>
       </tr>
       <tr>
         <td>Ether</td>
-        <td id="price_eth"></td>
+        <td id="bid_eth"></td>
+        <td id="ask_eth"></td>
       </tr>
     </table>
     
@@ -60,14 +63,18 @@
         def on_complete(req):
             import json
             data = json.loads(req.responseText)
-            test = data['Realtime Currency Exchange Rate']['8. Bid Price']
-            document['price_btc'].text = test
+            bid = data['Realtime Currency Exchange Rate']['8. Bid Price']
+            ask = data['Realtime Currency Exchange Rate']['9. Ask Price']
+            document['bid_btc'].text = bid
+            document['ask_btc'].text = ask
 
         def on_complete_eth(req):
             import json
             data = json.loads(req.responseText)
-            test = data['Realtime Currency Exchange Rate']['8. Bid Price']
-            document['price_eth'].text = test
+            bid = data['Realtime Currency Exchange Rate']['8. Bid Price']
+            ask = data['Realtime Currency Exchange Rate']['9. Ask Price']
+            document['bid_eth'].text = bid
+            document['ask_eth'].text = ask
             
         def get_price(e):
             req = ajax.ajax()
@@ -75,8 +82,10 @@
             url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
             req.open('GET', url, True)
             req.bind('complete', on_complete)
-            document['price_eth'].text = 'Loading...'
-            document['price_btc'].text = 'Loading...'
+            document['bid_btc'].text = 'Loading...'
+            document['ask_btc'].text = 'Loading...'
+            document['bid_eth'].text = 'Loading...'
+            document['ask_eth'].text = 'Loading...'
 
             req.send()
             
