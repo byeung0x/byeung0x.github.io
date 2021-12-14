@@ -54,38 +54,7 @@
     </table>
     
     
-    <!-- Ajax call -->
-    <script type="text/python" id="script3">
-        from browser import document, ajax
-        import time
-        
-
-        def on_complete(req):
-            import json
-            data = json.loads(req.responseText)
-            bid = data['Realtime Currency Exchange Rate']['8. Bid Price']
-            ask = data['Realtime Currency Exchange Rate']['9. Ask Price']
-            document['bid_btc'].text = bid
-            document['ask_btc'].text = ask
-            
-        def get_price(e):
-            req = ajax.ajax()
-            coin = 'btc'
-            url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
-            req.open('GET', url, True)
-            req.bind('complete', on_complete)
-            document['bid_btc'].text = 'Loading...'
-            document['ask_btc'].text = 'Loading...'
-
-            document['ask_eth'].text = 'Loading...'
-
-            req.send()
-            
-        document['get_price-btn'].bind('click', get_price)
-    </script>
-
-    
-<script type="javascript" id="script_java_1">
+<script type="text/javascript" id="script_java_1">
 
 document.getElementById("bid_eth").write(1 + 2);
 const userAction = async () => 
