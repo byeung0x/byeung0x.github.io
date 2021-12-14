@@ -40,16 +40,19 @@
         <th>Coin</th>
         <th>Bid</th>
         <th>Ask</th>
+        <th>Last updated</th>
       </tr>
       <tr>
         <td>Bitcoin</td>
         <td id="bid_btc"></td>
         <td id="ask_btc"></td>
+        <td id="time_btc"></td>
       </tr>
       <tr>
         <td>Ether</td>
         <td id="bid_eth"></td>
         <td id="ask_eth"></td>
+        <td id="time_eth"></td>
       </tr>
     </table>
     
@@ -66,7 +69,8 @@
       // do something with myJson
       var bid = await myJson['Realtime Currency Exchange Rate']['8. Bid Price'];
       var ask = await myJson['Realtime Currency Exchange Rate']['9. Ask Price'];
-      console.log(bid,ask);
+      var time = await myJson['Realtime Currency Exchange Rate']['6. Last Refreshed'];
+      console.log(bid,ask,time);
         
       var response = await fetch('https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + 'btc' + '&to_currency=' + curr + '&apikey=B2V50BK9GE7VJU3O',
       {method:'GET'});
@@ -74,14 +78,17 @@
       // do something with myJson
       var bid2 = await myJson['Realtime Currency Exchange Rate']['8. Bid Price'];
       var ask2 = await myJson['Realtime Currency Exchange Rate']['9. Ask Price'];
-      console.log(bid2,ask2);
+      var time2 = await myJson['Realtime Currency Exchange Rate']['6. Last Refreshed'];
+      console.log(bid2,ask2,time2);
         
         
       return [
       document.getElementById("bid_eth").innerHTML = bid,
       document.getElementById("ask_eth").innerHTML = ask,
+          document.getElementById("time_eth").innerHTML = time,
       document.getElementById("bid_btc").innerHTML = bid2,
       document.getElementById("ask_btc").innerHTML = ask2
+      document.getElementById("time2_btc").innerHTML = time2,
       ]
       ;
 
