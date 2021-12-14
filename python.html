@@ -55,8 +55,7 @@
     <script type="text/python" id="script3">
         from browser import document, ajax
         
-        coin = 'btc'
-        url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
+        
 
         def on_complete(req):
             import json
@@ -64,10 +63,26 @@
             test = data['Realtime Currency Exchange Rate']['8. Bid Price']
             document['price_btc'].text = test
 
+        def on_complete_eth(req):
+            import json
+            data = json.loads(req.responseText)
+            test = data['Realtime Currency Exchange Rate']['8. Bid Price']
+            document['price_eth'].text = test
+            
         def get_price(e):
             req = ajax.ajax()
+            coin = 'btc'
+            url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
             req.open('GET', url, True)
             req.bind('complete', on_complete)
+            document['price_btc'].text = 'Loading...'
+            document['price_eth'].text = 'Loading...'
+            req.send()
+            
+            coin = 'eth'
+            url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
+            req.open('GET', url, True)
+            req.bind('complete', on_complete_eth)
             req.send()
 
         document['get_price-btn'].bind('click', get_price)
