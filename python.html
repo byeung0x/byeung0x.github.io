@@ -75,8 +75,9 @@
             url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
             req.open('GET', url, True)
             req.bind('complete', on_complete)
-            document['price_btc'].text = 'Loading...'
             document['price_eth'].text = 'Loading...'
+            document['price_btc'].text = 'Loading...'
+
             req.send()
             
             coin = 'eth'
