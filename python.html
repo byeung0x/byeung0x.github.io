@@ -54,7 +54,7 @@
     <!-- Ajax call -->
     <script type="text/python" id="script3">
         from browser import document, ajax
-        
+        import time
         
 
         def on_complete(req):
@@ -79,6 +79,8 @@
             document['price_btc'].text = 'Loading...'
 
             req.send()
+            
+            time.sleep(5)
             
             coin = 'eth'
             url = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=' + coin + '&to_currency=USD&apikey=B2V50BK9GE7VJU3O'
