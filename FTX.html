@@ -67,6 +67,7 @@
           var message = evt.data;
           document.getElementById('bid_btc').innerHTML = message['data']['bid']
           document.getElementById('ask_btc').innerHTML = message['data']['ask']
+          
           document.getElementById('time_btc').innerHTML = message['data']['time']
           console.log("Data received...");
           console.log(message);
