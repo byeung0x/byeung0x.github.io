@@ -49,13 +49,14 @@
 
 
     <script>
+    const ws = ''
     function ws_open() 
       {
         if ("WebSocket" in window)
           {
             console.log("Congratulations! It supports websocket usage.");
 
-            const ws = new WebSocket("wss://ftx.com/ws/");
+            ws = new WebSocket("wss://ftx.com/ws/");
 
             ws.onopen = function() 
               {
