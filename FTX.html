@@ -79,7 +79,7 @@
             console.log("Congratulations! It supports websocket usage.");
 
             ws = new WebSocket("wss://ftx.com/ws/");
-            ws_Bi = new WebSocket("wss://stream.binance.com:9443/stream?streams=BTCBUSD@bookTicker/ETHBUSD@bookTicker");
+            ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
             
             
             ws.onopen = function() 
@@ -124,18 +124,18 @@
               {
                 var message = JSON.parse(evt.data);
               
-                if (message['stream'] == 'BTCBUSD@bookTicker')
+                if (message['s'] == 'BTCBUSD')
                   {
                     console.log(message)
-                    document.getElementById('bid_btc_Bi').innerHTML = message['data']['b'];
-                    document.getElementById('ask_btc_Bi').innerHTML = message['data']['a'];
+                    document.getElementById('bid_btc_Bi').innerHTML = message['b'];
+                    document.getElementById('ask_btc_Bi').innerHTML = message['a'];
                   }
 
-                else if (message['stream'] == 'ETHBUSD@bookTicker')
+                else if (message['s'] == 'ETHBUSD')
                   {
                     console.log(message)
-                    document.getElementById('bid_eth_Bi').innerHTML = message['data']['b'];
-                    document.getElementById('ask_eth_Bi').innerHTML = message['data']['a'];
+                    document.getElementById('bid_eth_Bi').innerHTML = message['b'];
+                    document.getElementById('ask_eth_Bi').innerHTML = message['a'];
                   };  
               };
 
