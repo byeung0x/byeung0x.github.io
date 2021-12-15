@@ -51,54 +51,56 @@
     <script>
     var ws = '';
     function ws_open() 
-    {
-      if ("WebSocket" in window)
       {
-        console.log("Congratulations! It supports websocket usage.");
-        
-        var ws = new WebSocket("wss://ftx.com/ws/");
-        
-        ws.onopen = function() {
-          ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
-          ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'ETH/USD'}));
-          console.log("Subscribing BTC/USD market data...");
-        };
-        
-        ws.onmessage = function (evt) 
-        {
-          var message = JSON.parse(evt.data);
-          console.log(message);
-          
-          if (message['market'] = 'BTC/USD')
+        if ("WebSocket" in window)
           {
-          document.getElementById('bid_btc').innerHTML = message['data']['bid'];
-          document.getElementById('ask_btc').innerHTML = message['data']['ask'];
-          document.getElementById('time_btc').innerHTML = message['data']['time'];       
-          };
-          
-          else if (message['market'] = 'ETH/USD')
-           {
-          document.getElementById('bid_eth').innerHTML = message['data']['bid'];
-          document.getElementById('ask_eth').innerHTML = message['data']['ask'];
-          document.getElementById('time_eth').innerHTML = message['data']['time'];
-          };             
-        };
-        
-        ws.onclose = function() {
-          console.log("Connection aborbed");
-        };
-      } 
+            console.log("Congratulations! It supports websocket usage.");
+
+            var ws = new WebSocket("wss://ftx.com/ws/");
+
+            ws.onopen = function() 
+              {
+                ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
+                ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'ETH/USD'}));
+                console.log("Subscribing BTC/USD market data...");
+              };
+
+            ws.onmessage = function (evt) 
+              {
+                var message = JSON.parse(evt.data);
+                console.log(message);
+
+                if (message['market'] = 'BTC/USD')
+                  {
+                  document.getElementById('bid_btc').innerHTML = message['data']['bid'];
+                  document.getElementById('ask_btc').innerHTML = message['data']['ask'];
+                  document.getElementById('time_btc').innerHTML = message['data']['time'];       
+                  };
+
+                else if (message['market'] = 'ETH/USD')
+                  {
+                  document.getElementById('bid_eth').innerHTML = message['data']['bid'];
+                  document.getElementById('ask_eth').innerHTML = message['data']['ask'];
+                  document.getElementById('time_eth').innerHTML = message['data']['time'];
+                  };             
+              };
+
+            ws.onclose = function() 
+              {
+                console.log("Connection aborbed");
+              };
+          } 
         else
-        {
-          console.log("Browser do not support websocket...");
-        };
-    }
+          {
+            console.log("Browser do not support websocket...");
+          };
+      };
       
    function ws_close()
-      {
-        ws = new WebSocket("wss://ftx.com/ws/");
-        ws.send(JSON.stringify({'op': 'unsubscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
-      }
+     {
+     ws = new WebSocket("wss://ftx.com/ws/");
+     ws.send(JSON.stringify({'op': 'unsubscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
+     };
                 
                 
 
