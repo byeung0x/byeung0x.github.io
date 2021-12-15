@@ -79,7 +79,7 @@
             console.log("Congratulations! It supports websocket usage.");
 
             ws = new WebSocket("wss://ftx.com/ws/");
-            ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
+            ws_Bi = new WebSocket("wss://stream.binance.com:9443/stream?streams=BTCBUSD@bookTicker/ETHBUSD@bookTicker");
             
             
             ws.onopen = function() 
