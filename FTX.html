@@ -124,18 +124,18 @@
               {
                 var message = JSON.parse(evt.data);
               
-                if (message['s'] == 'BTCBUSD')
+                if (message['stream'] == 'BTCBUSD@bookTicker')
                   {
                     console.log(message)
-                    document.getElementById('bid_btc_Bi').innerHTML = message['b'];
-                    document.getElementById('ask_btc_Bi').innerHTML = message['a'];
+                    document.getElementById('bid_btc_Bi').innerHTML = message['data']['b'];
+                    document.getElementById('ask_btc_Bi').innerHTML = message['data']['a'];
                   }
 
-                else if (message['s'] == 'ETHBUSD')
+                else if (message['stream'] == 'ETHBUSD@bookTicker')
                   {
                     console.log(message)
-                    document.getElementById('bid_eth_Bi').innerHTML = message['b'];
-                    document.getElementById('ask_eth_Bi').innerHTML = message['a'];
+                    document.getElementById('bid_eth_Bi').innerHTML = message['data']['b'];
+                    document.getElementById('ask_eth_Bi').innerHTML = message['data']['a'];
                   };  
               };
 
