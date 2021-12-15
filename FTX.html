@@ -110,8 +110,9 @@
             
             ws_Bi.onopen = function() 
               {
-                ws_Bi.send(JSON.stringify({'method': 'SUBSCRIBE', 'params': '!bookTicker', 'id': 1}));
                 console.log("Subscribing Binance BTC/USD market data...");
+                ws_Bi.send(JSON.stringify({'method': 'SUBSCRIBE', 'params': '!bookTicker', 'id': 1}));
+                
               };
 
             ws_Bi.onmessage = function (evt) 
