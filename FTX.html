@@ -59,7 +59,7 @@
         var ws = new WebSocket("wss://ftx.com/ws/");
         
         ws.onopen = function() {
-          ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker'}));
+          ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
           console.log("Subscribing BTC/USD market data...");
         };
         
