@@ -71,25 +71,17 @@
           
           if (message['market'] = 'BTC/USD')
           {
-          document.getElementById('bid_btc').innerHTML = message['data']['bid']
-          document.getElementById('ask_btc').innerHTML = message['data']['ask']
-          
-          document.getElementById('time_btc').innerHTML = message['data']['time']
-            
-          }
+          document.getElementById('bid_btc').innerHTML = message['data']['bid'];
+          document.getElementById('ask_btc').innerHTML = message['data']['ask'];
+          document.getElementById('time_btc').innerHTML = message['data']['time'];       
+          };
           
           else if (message['market'] = 'ETH/USD')
-         {
-        document.getElementById('bid_eth').innerHTML = message['data']['bid']
-        document.getElementById('ask_eth').innerHTML = message['data']['ask']
-
-        document.getElementById('time_eth').innerHTML = message['data']['time']
-
-        }
-            
-            
-            
-            
+           {
+          document.getElementById('bid_eth').innerHTML = message['data']['bid'];
+          document.getElementById('ask_eth').innerHTML = message['data']['ask'];
+          document.getElementById('time_eth').innerHTML = message['data']['time'];
+          };             
         };
         
         ws.onclose = function() {
@@ -104,7 +96,7 @@
       
    function ws_close()
       {
-        ws = WebSocket("wss://ftx.com/ws/");
+        ws = new WebSocket("wss://ftx.com/ws/");
         ws.send(JSON.stringify({'op': 'unsubscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
       }
                 
