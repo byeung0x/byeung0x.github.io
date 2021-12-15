@@ -65,7 +65,8 @@
         };
         
         ws.onmessage = function (evt) {
-          var message = evt.data;
+          var message = evt.data.json();
+          
           document.getElementById('bid_btc').innerHTML = message['data']['bid']
           document.getElementById('ask_btc').innerHTML = message['data']['ask']
           
