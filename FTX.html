@@ -50,7 +50,8 @@
 
 
     <script>
-    function ws_test() {
+    function ws_test() 
+    {
       if ("WebSocket" in window)
       {
         alert("Congratulations! It supports websocket usage.");
@@ -70,13 +71,12 @@
         ws.onclose = function() {
           alert("Connection aborbed");
         };
-        
+      } 
         else
         {
           alert("Browser do not support websocket...");
         };
-        
-      }
+    }
       
           
 
