@@ -129,14 +129,14 @@
               
                 if (message['s'] == 'BTCBUSD')
                   {
-                    document.getElementById('bid_btc_Bi').innerHTML = message[b];
-                    document.getElementById('ask_btc_Bi').innerHTML = message[a];
+                    document.getElementById('bid_btc_Bi').innerHTML = message['b'];
+                    document.getElementById('ask_btc_Bi').innerHTML = message['a'];
                   }
 
                 else if (message['market'] == 'ETHBUSD')
                   {
-                    document.getElementById('bid_btc_Bi').innerHTML = message[b];
-                    document.getElementById('ask_btc_Bi').innerHTML = message[a];
+                    document.getElementById('bid_btc_Bi').innerHTML = message['b'];
+                    document.getElementById('ask_btc_Bi').innerHTML = message['a'];
                   };  
               };
 
