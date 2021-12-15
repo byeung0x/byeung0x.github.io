@@ -75,7 +75,7 @@
                   document.getElementById('bid_btc').innerHTML = message['data']['bid'];
                   document.getElementById('ask_btc').innerHTML = message['data']['ask'];
                   document.getElementById('time_btc').innerHTML = message['data']['time'];       
-                  };
+                  }
 
                 else if (message['market'] = 'ETH/USD')
                   {
@@ -93,7 +93,7 @@
         else
           {
             console.log("Browser do not support websocket...");
-          };
+          }
       };
       
    function ws_close()
