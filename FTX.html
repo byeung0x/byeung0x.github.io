@@ -64,7 +64,7 @@
         };
         
         ws.onmessage = function (evt) {
-          var message = evt.data
+          var message = evt.data;
           message = message.json();
           console.log(typeof message);
           document.getElementById('bid_btc').innerHTML = message['data']['bid']
