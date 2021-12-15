@@ -33,13 +33,13 @@
         <th>Last updated</th>
       </tr>
       <tr>
-        <td>Bitcoin</td>
+        <td id="coin_btc">BTC/USD</td>
         <td id="bid_btc"></td>
         <td id="ask_btc"></td>
         <td id="time_btc"></td>
       </tr>
       <tr>
-        <td>Ether</td>
+        <td id="coin_eth">ETH/USD</td>
         <td id="bid_eth"></td>
         <td id="ask_eth"></td>
         <td id="time_eth"></td>
@@ -60,18 +60,36 @@
         
         ws.onopen = function() {
           ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
+          ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'ETH/USD'}));
           console.log("Subscribing BTC/USD market data...");
         };
         
-        ws.onmessage = function (evt) {
+        ws.onmessage = function (evt) 
+        {
           var message = JSON.parse(evt.data);
-          console.log(typeof message);
+          console.log(message);
+          
+          if (message['market'] = 'BTC/USD')
+          {
           document.getElementById('bid_btc').innerHTML = message['data']['bid']
           document.getElementById('ask_btc').innerHTML = message['data']['ask']
           
           document.getElementById('time_btc').innerHTML = message['data']['time']
-          console.log("Data received...");
-          console.log(message);
+            
+          }
+          
+          else if (message['market'] = 'ETH/USD')
+         {
+        document.getElementById('bid_eth').innerHTML = message['data']['bid']
+        document.getElementById('ask_eth').innerHTML = message['data']['ask']
+
+        document.getElementById('time_eth').innerHTML = message['data']['time']
+
+        }
+            
+            
+            
+            
         };
         
         ws.onclose = function() {
@@ -86,6 +104,7 @@
       
    function ws_close()
       {
+        ws = WebSocket("wss://ftx.com/ws/");
         ws.send(JSON.stringify({'op': 'unsubscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
       }
                 
