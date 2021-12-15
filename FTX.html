@@ -22,8 +22,9 @@
 <body>
     <h1>Get Crypto Price</h1>
 
-    <button id="get_price-btn" onclick="1">Get latest price</button>
+    <button id="open_ws-btn" onclick="javascript:ws_open()">Get latest price</button>
 
+    <button id="close_ws-btn" onclick="javascript:ws_close()">Get latest price</button>
     <table>
       <tr>
         <th>Coin</th>
@@ -50,7 +51,7 @@
 
 
     <script>
-    function ws_test() 
+    function ws_open() 
     {
       if ("WebSocket" in window)
       {
@@ -83,13 +84,14 @@
         };
     }
       
-          
+   function ws_close()
+      {
+        ws.send(JSON.stringify({'op': 'unsubscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
+      }
+                
+                
 
     </script>
-
-    <div id="sse">
-      <a href="javascript:ws_test()">Run Websocket to FTX</a>
-    </div>
 
 </body>
 </html>
