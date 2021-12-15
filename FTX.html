@@ -118,14 +118,11 @@
             ws_Bi.onopen = function() 
               {
                 console.log("Subscribing Binance BTC/USD market data...");
-                <!--ws_Bi.send(JSON.stringify({'method': 'SUBSCRIBE', 'params': '!bookTicker', 'id': 1})); -->
-                
               };
 
             ws_Bi.onmessage = function (evt) 
               {
                 var message = JSON.parse(evt.data);
-                console.log(message);
               
                 if (message['s'] == 'BTCBUSD')
                   {
