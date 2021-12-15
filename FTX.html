@@ -119,8 +119,18 @@
               {
                 var message = JSON.parse(evt.data);
                 console.log(message);
+              
+                if (message['s'] == 'BTCBUSD')
+                  {
+                    document.getElementById('bid_btc_Bi').innerHTML = message[b];
+                    document.getElementById('ask_btc_Bi').innerHTML = message[a];
+                  }
 
-
+                else if (message['market'] == 'ETHBUSD')
+                  {
+                    document.getElementById('bid_btc_Bi').innerHTML = message[b];
+                    document.getElementById('ask_btc_Bi').innerHTML = message[a];
+                  };  
               };
 
             ws_Bi.onclose = function() 
