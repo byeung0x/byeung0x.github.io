@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+<body>
+
+<!-- Content will go here -->
+  <h1>byeung0x Private Space</h1>
+  
+</body>
+  <!-- Navigation -->
+<nav class="w3-bar w3-black">
+  <a href="/index.html" class="w3-button w3-bar-item">Home</a>
+  <a href="#about" class="w3-button w3-bar-item">About</a>
+  <a href="/python.html" class="w3-button w3-bar-item">Python Test</a>
+  <a href="/FTX.html" class="w3-button w3-bar-item">Crypto Quant Zone</a>  
+  <a href="/contact.html" class="w3-button w3-bar-item">Contact</a>
+</nav>
+    
+ 
+<style>
+  table, td 
+  {
+    border: 1px solid black;
+  }
+</style>
+  
+<body>
+    <h1>Put your watchlist here</h1>
+
+    <table id="CoinList">
+      <tr>
+        <th>Coin</th>
+        <th>Bid</th>
+        <th>Ask</th>
+        <th>Last updated</th>
+      </tr>
+      <tr>
+        <td id="coin_btc">BTC/USD</td>
+        <td id="bid_btc"></td>
+        <td id="ask_btc"></td>
+        <td id="time_btc"></td>
+      </tr> 
+    </table>
+    
+  <input type="text" id="AddSym" value="CoinPair">
+  <button onclick="CreateRow()">Add</button>
+  <button onclick="DeleteRow()">Delete</button>
+
+  <script>
+  function CreateRow() 
+    {
+      var table = document.getElementById("CoinList");
+      var row = table.insertRow(1);
+      var cell1 = row.insertCell(0);
+      cell1.innerHTML = AddSym;
+    }
+   
+   function DeleteRow() 
+    {
+      document.getElementById("CoinList").deleteRow(1);
+    }
+    
+
+  </script>
+  
+  
+  
+
+</body>
+</html>
