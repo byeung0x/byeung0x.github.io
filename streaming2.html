@@ -1,4 +1,65 @@
+<!DOCTYPE HTML>    
+<html>    
+<head>
+  
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
 <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0"></script>
+
+<script>
+import {Chart} from 'chart.js';
+import 'chartjs-adapter-luxon';
+import ChartStreaming from 'chartjs-plugin-streaming';
+
+Chart.register(ChartStreaming);
+
+</script>
+  
+  
+<script>
+  // Change default options for ALL charts
+  Chart.defaults.set('plugins.streaming', {
+    duration: 20000
+  });
+
+  const chart = new Chart(ctx, {
+    options: {
+      plugins: {
+        // Change options for ALL axes of THIS CHART
+        streaming: {
+          duration: 20000
+        }
+      },
+      scales: {
+        x: {
+          type: 'realtime',
+          // Change options only for THIS AXIS
+          realtime: {
+            duration: 20000
+          }
+        }
+      }
+    }
+  });
+  
+</script>
+  
+<script>
+   // save the chart instance to a variable
+  var myChart = new Chart(ctx, config);
+
+  // your event listener code - assuming the event object has the timestamp and value properties
+  function onReceive(event) {
+
+    // append the new data to the existing chart data
+    myChart.data.datasets[0].data.push({
+      x: event.timestamp,
+      y: event.value
+    });
+
+    // update chart datasets keeping the current animation
+    myChart.update('quiet');
+  }
+  
+</script>
