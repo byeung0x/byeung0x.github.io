@@ -44,22 +44,110 @@ Chart.register(ChartStreaming);
   });
   
 </script>
+
   
+<script>
+  let ws = ''
+  function ws_open() 
+    {
+      if ("WebSocket" in window)
+        {
+          console.log("Congratulations! It supports websocket usage.");
+
+          ws = new WebSocket("wss://ftx.com/ws/");
+          ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
+
+
+          ws.onopen = function() 
+            {
+              ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
+              ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'ETH/USD'}));
+              console.log("Subscribing BTC/USD market data...");
+            };
+
+          ws.onmessage = function (evt) 
+            {
+              var message = JSON.parse(evt.data);
+              console.log(message);
+ 
+              // append the new data to the existing chart data
+              myChart.data.datasets[0].data.push(
+              {
+                x: message['data']['time'],
+                y: message['data']['bid']
+              });
+
+              // update chart datasets keeping the current animation
+              myChart.update('quiet');
+            };
+      
+      
+          ws.onclose = function() 
+            {
+              console.log("Connection aborbed");
+            };
+
+
+          ws_Bi.onopen = function() 
+            {
+              console.log("Subscribing Binance BTC/USD market data...");
+            };
+
+          ws_Bi.onmessage = function (evt) 
+            {
+              var message = JSON.parse(evt.data);
+
+              if (message['s'] == 'BTCBUSD')
+                {
+                  console.log(message)
+                  document.getElementById('bid_btc_Bi').innerHTML = message['b'];
+                  document.getElementById('ask_btc_Bi').innerHTML = message['a'];
+                }
+
+              else if (message['s'] == 'ETHBUSD')
+                {
+                  console.log(message)
+                  document.getElementById('bid_eth_Bi').innerHTML = message['b'];
+                  document.getElementById('ask_eth_Bi').innerHTML = message['a'];
+                };  
+            
+              // append the new data to the existing chart data
+              myChart.data.datasets[1].data.push(
+              {
+                x: message['E'],
+                y: message['b']
+              });
+
+              // update chart datasets keeping the current animation
+              myChart.update('quiet');
+            
+            };
+
+          ws_Bi.onclose = function() 
+            {
+              console.log("Connection aborbed");
+            };
+
+
+
+        } 
+      else
+        {
+          console.log("Browser do not support websocket...");
+        }
+    };
+
+  function ws_close()
+   {
+    ws.close();
+    ws_Bi.close();
+   };
+
+</script>
+  
+ 
 <script>
    // save the chart instance to a variable
   var myChart = new Chart(ctx, config);
-
-  // your event listener code - assuming the event object has the timestamp and value properties
-  function onReceive(event) {
-
-    // append the new data to the existing chart data
-    myChart.data.datasets[0].data.push({
-      x: event.timestamp,
-      y: event.value
-    });
-
-    // update chart datasets keeping the current animation
-    myChart.update('quiet');
-  }
   
 </script>
