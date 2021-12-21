@@ -90,7 +90,7 @@
                 var message = JSON.parse(evt.data);
               
                 var target = message['s'];
-                if (target.includes("BUSD"))
+                if (target.includes("BUSD") || target.includes("USDT"))
                   {console.log(message['s'])};
                 
               
