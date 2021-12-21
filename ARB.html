@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+<body>
+
+<!-- Content will go here -->
+  <h1>byeung0x Private Space</h1>
+  
+</body>
+  <!-- Navigation -->
+<nav class="w3-bar w3-black">
+  <a href="/index.html" class="w3-button w3-bar-item">Home</a>
+  <a href="#about" class="w3-button w3-bar-item">About</a>
+  <a href="/python.html" class="w3-button w3-bar-item">Python Test</a>
+  <a href="/FTX.html" class="w3-button w3-bar-item">Crypto Quant Zone</a>  
+  <a href="/contact.html" class="w3-button w3-bar-item">Contact</a>
+</nav>
+    
+ 
+    
+<body>
+    <h1>Get Crypto Price</h1>
+
+    <button id="open_ws-btn" onclick="javascript:ws_open()">Get FTX price</button>
+
+    <button id="close_ws-btn" onclick="javascript:ws_close()">Stop streaming</button>
+    <table>
+      <tr>
+        <th>Coin</th>
+        <th>Bid</th>
+        <th>Ask</th>
+        <th>Last updated</th>
+      </tr>
+      <tr>
+        <td id="coin_btc">BTC/USD</td>
+        <td id="bid_btc"></td>
+        <td id="ask_btc"></td>
+        <td id="time_btc"></td>
+      </tr>
+      <tr>
+        <td id="coin_eth">ETH/USD</td>
+        <td id="bid_eth"></td>
+        <td id="ask_eth"></td>
+        <td id="time_eth"></td>
+      </tr>
+
+      <tr>
+        <td ></td>
+        <td ></td>
+        <td ></td>
+        <td ></td>
+      </tr>
+      
+      <tr>
+        <td id="coin_btc_Bi">BTC/USD</td>
+        <td id="bid_btc_Bi"></td>
+        <td id="ask_btc_Bi"></td>
+        <td id="time_btc_Bi"></td>
+      </tr>
+      <tr>
+        <td id="coin_eth_Bi">ETH/USD</td>
+        <td id="bid_eth_Bi"></td>
+        <td id="ask_eth_Bi"></td>
+        <td id="time_eth_Bi"></td>
+      </tr><br>
+      
+    </table>
+    
+
+
+    <script>
+    let ws = ''
+    function ws_open() 
+      {
+        if ("WebSocket" in window)
+          {
+            console.log("Congratulations! It supports websocket usage.");
+
+            ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
+            
+            ws_Bi.onopen = function() 
+              {
+                console.log("Subscribing Binance BTC/USD market data...");
+              };
+
+            ws_Bi.onmessage = function (evt) 
+              {
+                var message = JSON.parse(evt.data);
+              
+                if (message['s'] == 'BTCBUSD')
+                  {
+                    console.log(message)
+                    document.getElementById('bid_btc_Bi').innerHTML = message['b'];
+                    document.getElementById('ask_btc_Bi').innerHTML = message['a'];
+                  }
+
+                else if (message['s'] == 'ETHBUSD')
+                  {
+                    console.log(message)
+                    document.getElementById('bid_eth_Bi').innerHTML = message['b'];
+                    document.getElementById('ask_eth_Bi').innerHTML = message['a'];
+                  };  
+              };
+
+            ws_Bi.onclose = function() 
+              {
+                console.log("Connection aborbed");
+              };
+            
+            
+            
+          } 
+        else
+          {
+            console.log("Browser do not support websocket...");
+          }
+      };
+      
+   function ws_close()
+     {
+      ws.close();
+      ws_Bi.close();
+     };
+
+    </script>
+  
+  
+  
+
+</body>
+</html>
