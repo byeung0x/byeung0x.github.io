@@ -89,7 +89,10 @@
               {
                 var message = JSON.parse(evt.data);
               
-                console.log(message['s']);
+                var target = message['s'];
+                if target.includes("BUSD")
+                  {console.log(message['s'])};
+                
               
                 if (message['s'] == 'BTCBUSD')
                   {
