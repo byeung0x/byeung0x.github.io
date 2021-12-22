@@ -26,7 +26,7 @@
     <button id="open_ws-btn" onclick="javascript:ws_open()">Get FTX price</button>
 
     <button id="close_ws-btn" onclick="javascript:ws_close()">Stop streaming</button>
-    <table>
+    <table id="CoinList">
       <tr>
         <th>Coin</th>
         <th>Bid</th>
@@ -73,7 +73,8 @@
     <script>
     let ws = '';
     var book = {};
-    
+    const table = document.getElementById("CoinList");
+      
     function ws_open() 
       {
         if ("WebSocket" in window)
@@ -86,7 +87,8 @@
               {
                 console.log("Subscribing Binance BTC/USD market data...");
               };
-
+            
+            
             ws_Bi.onmessage = function (evt) 
               {
                 let message = JSON.parse(evt.data);
@@ -94,11 +96,28 @@
                 let target = message['s'];
                 let b = message['b'];
                 let a = message['a'];
+                
                 if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
                   {
                     if (typeof book[target.substring(0,target.length - 4)] === 'undefined')
-                      {book[target.substring(0,target.length - 4)] = {}};
-                    book[target.substring(0,target.length - 4)][target] = [b,a]
+                      {
+                        book[target.substring(0,target.length - 4)] = {}
+                        
+                        let row = table.insertRow(table.rows.length+1);
+                        let cell1 = row.insertCell(0);
+                        cell1.setAttribute("id", "coin_" + target.substring(0,target.length - 4));
+                        let cell2 = row.insertCell(1);
+                        cell2.setAttribute("id", "b_" + target.substring(0,target.length - 4));
+                        let cell3 = row.insertCell(2);
+                        cell3.setAttribute("id", "a_" + target.substring(0,target.length - 4));
+                        let cell4 = row.insertCell(3);
+                        cell4.setAttribute("id", "t_" + target.substring(0,target.length - 4));
+                        
+                        cell1.innerHTML = target.substring(0,target.length - 4);
+                      };
+                    book[target.substring(0,target.length - 4)][target] = [b,a];
+                    document.getElementById("id", "b_" + target.substring(0,target.length - 4)).innerHTML = book[target.substring(0,target.length - 4)][target][0];
+                    document.getElementById("id", "a_" + target.substring(0,target.length - 4)).innerHTML = book[target.substring(0,target.length - 4)][target][1]
                   };
                 
               
