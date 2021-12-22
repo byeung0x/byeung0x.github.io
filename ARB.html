@@ -78,7 +78,7 @@ function ws_open()
 
                     if (typeof book[coin][coin + "BUSD"] != 'undefined' && typeof book[coin][coin + "USDT"] != 'undefined')
                       {
-                        if (typeof document.getElementById("LBUSD_" + coin) == 'undefined')
+                        if (!document.getElementById("LBUSD_" + coin)
                           {
                             let row = table.insertRow(table.rows.length);
                             let cell1 = row.insertCell(0);
