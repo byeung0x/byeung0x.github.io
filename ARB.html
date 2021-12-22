@@ -98,8 +98,8 @@ function ws_open()
                           }
                         else
                           { 
-                            let LUSDT = ((Number(book[coin][coin + "BUSD"][0])*(1-0.075%)) * Number(book.BUSD.BUSDUSDT[0])) / (Number(book[coin][coin + "USDT"][1])*(1+0.075%));
-                            let LBUSD = ((Number(book[coin][coin + "USDT"][0])*(1-0.075%)) / Number(book.BUSD.BUSDUSDT[1])) * (Number(book[coin][coin + "BUSD"][1])*(1+0.075%));                                                                                              
+                            let LUSDT = ((Number(book[coin][coin + "BUSD"][0])*(1-0.00075)) * Number(book.BUSD.BUSDUSDT[0])) / (Number(book[coin][coin + "USDT"][1])*(1+0.00075));
+                            let LBUSD = ((Number(book[coin][coin + "USDT"][0])*(1-0.00075)) / Number(book.BUSD.BUSDUSDT[1])) * (Number(book[coin][coin + "BUSD"][1])*(1+0.00075));                                                                                              
                             document.getElementById("LUSDT_" + coin).innerHTML = LUSDT.toFixed(4); 
                             document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4)
                           }
