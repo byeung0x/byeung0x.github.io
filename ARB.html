@@ -121,6 +121,9 @@ function ws_initiate()
             if (kill_switch == true)
               {
                 kill_switch = false;
+              }
+            else
+              {
                 ws_Bi = null;
                 setTimeout(ws_initiate, 5000);
                 console.log("Reconnecting Binance websocket...")
