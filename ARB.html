@@ -81,9 +81,14 @@ function ws_open()
 
                 book[coin][target] = [b,a];
 
-                    if (typeof book[coin][coin + "BUSD"] != 'undefined' && typeof book[coin][coin + "USDT"] != 'undefined')
+                if (typeof book[coin][coin + "BUSD"] != 'undefined' && typeof book[coin][coin + "USDT"] != 'undefined')
+                  {
+                    let LUSDT = ((Number(book[coin][coin + "BUSD"][0])*(1-0.00075)) * Number(book.BUSD.BUSDUSDT[0])) / (Number(book[coin][coin + "USDT"][1])*(1+0.00075));
+                    let LBUSD = ((Number(book[coin][coin + "USDT"][0])*(1-0.00075)) / Number(book.BUSD.BUSDUSDT[1])) / (Number(book[coin][coin + "BUSD"][1])*(1+0.00075));                                                                                              
+                        
+                    if (!document.getElementById("coin" + coin))
                       {
-                        if (!document.getElementById("LBUSD_" + coin))
+                        if (LUSDT > 0 || LBUSD > 0)) 
                           {
                             let row = table.insertRow(table.rows.length);
                             let cell1 = row.insertCell(0);
@@ -96,14 +101,17 @@ function ws_open()
                             let cell4 = row.insertCell(3);
                             cell4.setAttribute("id", "t_" + coin)
                           }
-                        else
-                          { 
-                            let LUSDT = ((Number(book[coin][coin + "BUSD"][0])*(1-0.00075)) * Number(book.BUSD.BUSDUSDT[0])) / (Number(book[coin][coin + "USDT"][1])*(1+0.00075));
-                            let LBUSD = ((Number(book[coin][coin + "USDT"][0])*(1-0.00075)) / Number(book.BUSD.BUSDUSDT[1])) / (Number(book[coin][coin + "BUSD"][1])*(1+0.00075));                                                                                              
-                            document.getElementById("LUSDT_" + coin).innerHTML = LUSDT.toFixed(4); 
-                            document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4)
-                          }
-                      }     
+                      }
+                    else if (LUSDT < 0 && LBUSD < 0)
+                      {
+                        document.getElementById("coin" + coin).deleteRow(0)
+                      }
+                    else
+                      { 
+                        document.getElementById("LUSDT_" + coin).innerHTML = LUSDT.toFixed(4); 
+                        document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4)
+                      }
+                  }     
                }
           };
 
