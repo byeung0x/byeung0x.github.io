@@ -86,7 +86,7 @@ function ws_open()
                     let LUSDT = ((Number(book[coin][coin + "BUSD"][0])*(1-0.00075)) * Number(book.BUSD.BUSDUSDT[0])) / (Number(book[coin][coin + "USDT"][1])*(1+0.00075));
                     let LBUSD = ((Number(book[coin][coin + "USDT"][0])*(1-0.00075)) / Number(book.BUSD.BUSDUSDT[1])) / (Number(book[coin][coin + "BUSD"][1])*(1+0.00075));                                                                                              
                         
-                    if (!document.getElementById("coin" + coin))
+                    if (!document.getElementById("coin_" + coin))
                       {
                         if (LUSDT > 0 || LBUSD > 0)
                           {
@@ -104,7 +104,7 @@ function ws_open()
                       }
                     else if (LUSDT < 0 && LBUSD < 0)
                       {
-                        document.getElementById("coin" + coin).deleteRow(0)
+                        document.getElementById("coin_" + coin).deleteRow(0)
                       }
                     else
                       { 
