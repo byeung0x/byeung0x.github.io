@@ -37,82 +37,88 @@
     
 
 
-    <script>
-    let ws = '';
-    var book = {};
-    const table = document.getElementById("CoinList");
-      
-    function ws_open() 
+<script>
+let ws = '';
+var book = {};
+const table = document.getElementById("CoinList");
+
+function ws_open() 
+  {
+    if ("WebSocket" in window)
       {
-        if ("WebSocket" in window)
+        console.log("Congratulations! It supports websocket usage.");
+
+        ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
+
+        ws_Bi.onopen = function() 
           {
-            console.log("Congratulations! It supports websocket usage.");
+            console.log("Subscribing Binance BTC/USD market data...");
+          };
 
-            ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
-            
-            ws_Bi.onopen = function() 
-              {
-                console.log("Subscribing Binance BTC/USD market data...");
-              };
-            
-            
-            ws_Bi.onmessage = function (evt) 
-              {
-                let message = JSON.parse(evt.data);
-                
 
-                let target = message['s'];
-                let coin = target.substring(0,target.length - 4);
-                let b = message['b'];
-                let a = message['a'];
-                
-                if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
+        ws_Bi.onmessage = function (evt) 
+          {
+            let message = JSON.parse(evt.data);
+
+
+            let target = message['s'];
+            let coin = target.substring(0,target.length - 4);
+            let b = message['b'];
+            let a = message['a'];
+
+            if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
+              {
+
+                if (typeof book[coin] === 'undefined')
                   {
-                    if (typeof book[coin] === 'undefined')
-                      {
-                        book[coin] = {}
-                        
-                        let row = table.insertRow(table.rows.length);
-                        let cell1 = row.insertCell(0);
-                        cell1.setAttribute("id", "coin_" + target.substring(0,target.length - 4));
-                        let cell2 = row.insertCell(1);
-                        cell2.setAttribute("id", "LBUSD_" + target.substring(0,target.length - 4));
-                        let cell3 = row.insertCell(2);
-                        cell3.setAttribute("id", "LUSDT_" + target.substring(0,target.length - 4));
-                        let cell4 = row.insertCell(3);
-                        cell4.setAttribute("id", "t_" + target.substring(0,target.length - 4));
-                        
-                        cell1.innerHTML = target.substring(0,target.length - 4);
-                      };
-                    book[coin][target] = [b,a];
-                    
-                    document.getElementById("id", "LBUSD_" + coin).innerHTML = Number(book[coin][coin + "USDT"][0]) / (Number(book[coin][coin + "BUSD"][1]) / Number(book.BUSD.BUSDUSDT[1])); 
-                    document.getElementById("id", "LUSDT_" + coin).innerHTML = Number(book[coin][coin + "USDT"][1]) / (Number(book[coin][coin + "BUSD"][0]) / Number(book.BUSD.BUSDUSDT[0])); 
+                    book[coin] = {}
                   };
-                
-              };
 
-            ws_Bi.onclose = function() 
-              {
-                console.log("Connection aborbed");
-                console.log(JSON.stringify(book));
-              };
-            
-            
-            
-          } 
-        else
+                book[coin][target] = [b,a];
+
+                    if (typeof book[coin][coin + "BUSD"] != 'undefined' && typeof book[coin][coin + "USDT"] != 'undefined')
+                      {
+                        if (typeof document.getElementById("id", "LBUSD_" + coin) === 'undefined')
+                          {
+                            let row = table.insertRow(table.rows.length);
+                            let cell1 = row.insertCell(0);
+                            cell1.setAttribute("id", "coin_" + coin);
+                            cell1.innerHTML = coin;
+                            let cell2  = row.insertCell(1);
+                            cell2.setAttribute("id", "LBUSD_" + coin);
+                            let cell3 = row.insertCell(2);
+                            cell3.setAttribute("id", "LUSDT_" + coin);
+                            let cell4 = row.insertCell(3);
+                            cell4.setAttribute("id", "t_" + coin)
+                          }
+                        else
+                          { 
+                            document.getElementById("id", "LBUSD_" + coin).innerHTML = Number(book[coin][coin + "USDT"][0]) / (Number(book[coin][coin + "BUSD"][1]) / Number(book.BUSD.BUSDUSDT[1])); 
+                            document.getElementById("id", "LUSDT_" + coin).innerHTML = Number(book[coin][coin + "USDT"][1]) / (Number(book[coin][coin + "BUSD"][0]) / Number(book.BUSD.BUSDUSDT[0]))
+                          }
+                      }     
+               }
+          };
+
+        ws_Bi.onclose = function() 
           {
-            console.log("Browser do not support websocket...");
-          }
-      };
-      
-   function ws_close()
-     {
-      ws_Bi.close();
-     };
+            console.log("Connection aborbed");
+            console.log(JSON.stringify(book));
+          };
+      } 
+    else
+      {
+        console.log("Browser do not support websocket...");
+      }
+  };
 
-    </script>
+function ws_close()
+ {
+  ws_Bi.close();
+ };
+
+  
+</script>
   
   
   
