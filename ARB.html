@@ -28,7 +28,7 @@
 <body>
     <h1>Get Crypto Price</h1>
 
-    <button id="open_ws-btn" onclick="javascript:ws_open()">Get FTX price</button>
+    <button id="open_ws-btn" onclick="javascript:ws_initiate()">Get FTX price</button>
 
     <button id="close_ws-btn" onclick="javascript:ws_close()">Stop streaming</button>
     <table id="CoinList">
@@ -47,7 +47,7 @@ let ws = '';
 var book = {};
 const table = document.getElementById("CoinList");
 
-function ws_open() 
+function ws_initiate() 
   {
     if ("WebSocket" in window)
       {
@@ -119,7 +119,9 @@ function ws_open()
         ws_Bi.onclose = function() 
           {
             console.log("Connection aborbed");
-            console.log(JSON.stringify(book));
+            ws_Bi = null
+            setTimeout(ws_initiate, 5000)
+          
           };
       } 
     else
