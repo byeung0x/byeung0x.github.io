@@ -85,23 +85,11 @@
                         cell1.innerHTML = target.substring(0,target.length - 4);
                       };
                     book[coin][target] = [b,a];
-                    document.getElementById("id", "LBUSD_" + coin).innerHTML = book[coin][coin + "USDT"][0] / (book[coin][coin + "BUSD"][1] / book.BUSD.BUSDUSDT[1]); 
                     
-                    document.getElementById("id", "LUSDT_" + coin).innerHTML = book[coin][target][1]
+                    document.getElementById("id", "LBUSD_" + coin).innerHTML = Number(book[coin][coin + "USDT"][0]) / (Number(book[coin][coin + "BUSD"][1]) / Number(book.BUSD.BUSDUSDT[1])); 
+                    document.getElementById("id", "LUSDT_" + coin).innerHTML = Number(book[coin][coin + "USDT"][1]) / (Number(book[coin][coin + "BUSD"][0]) / Number(book.BUSD.BUSDUSDT[0])); 
                   };
                 
-              
-                if (message['s'] == 'BTCBUSD')
-                  {
-                    document.getElementById('bid_btc_Bi').innerHTML = book.BTCUSDT[1] / (book.BTCBUSD[0] / book.BUSDUSDT[0]);
-                    document.getElementById('ask_btc_Bi').innerHTML = book.BTCUSDT[0] / (book.BTCBUSD[1] / book.BUSDUSDT[1]);
-                  }
-
-                else if (message['s'] == 'ETHBUSD')
-                  {
-                    document.getElementById('bid_eth_Bi').innerHTML = b;
-                    document.getElementById('ask_eth_Bi').innerHTML = a;
-                  };  
               };
 
             ws_Bi.onclose = function() 
