@@ -78,7 +78,7 @@ function ws_open()
 
                     if (typeof book[coin][coin + "BUSD"] != 'undefined' && typeof book[coin][coin + "USDT"] != 'undefined')
                       {
-                        if (typeof document.getElementById("id", "LBUSD_" + coin) == 'undefined')
+                        if (typeof document.getElementById("LBUSD_" + coin) == 'undefined')
                           {
                             let row = table.insertRow(table.rows.length);
                             let cell1 = row.insertCell(0);
@@ -93,8 +93,8 @@ function ws_open()
                           }
                         else
                           { 
-                            document.getElementById("id", "LBUSD_" + coin).innerHTML = Number(book[coin][coin + "USDT"][0]) / (Number(book[coin][coin + "BUSD"][1]) / Number(book.BUSD.BUSDUSDT[1])); 
-                            document.getElementById("id", "LUSDT_" + coin).innerHTML = Number(book[coin][coin + "USDT"][1]) / (Number(book[coin][coin + "BUSD"][0]) / Number(book.BUSD.BUSDUSDT[0]))
+                            document.getElementById("LBUSD_" + coin).innerHTML = Number(book[coin][coin + "USDT"][0]) / (Number(book[coin][coin + "BUSD"][1]) / Number(book.BUSD.BUSDUSDT[1])); 
+                            document.getElementById("LUSDT_" + coin).innerHTML = Number(book[coin][coin + "USDT"][1]) / (Number(book[coin][coin + "BUSD"][0]) / Number(book.BUSD.BUSDUSDT[0]))
                           }
                       }     
                }
