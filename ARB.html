@@ -51,8 +51,6 @@ function ws_initiate()
   {
     if ("WebSocket" in window)
       {
-        console.log("Congratulations! It supports websocket usage.");
-
         ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
 
         ws_Bi.onopen = function() 
@@ -118,10 +116,10 @@ function ws_initiate()
 
         ws_Bi.onclose = function() 
           {
-            console.log("Connection aborbed");
+            console.log("Binance websocket connection aborbed");
             ws_Bi = null
             setTimeout(ws_initiate, 5000)
-          
+            console.log("Reconnecting Binance websocket...")
           };
       } 
     else
