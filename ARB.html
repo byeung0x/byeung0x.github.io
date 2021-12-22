@@ -71,7 +71,9 @@
 
 
     <script>
-    let ws = ''
+    let ws = '';
+    var book = {};
+    
     function ws_open() 
       {
         if ("WebSocket" in window)
@@ -91,7 +93,10 @@
               
                 var target = message['s'];
                 if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
-                  {console.log(message['s'])};
+                  {
+                    console.log(message['s'])
+                    book[target] = [message['b'],message['a']]
+                  };
                 
               
                 if (message['s'] == 'BTCBUSD')
@@ -124,6 +129,7 @@
    function ws_close()
      {
       ws_Bi.close();
+      console.log(JSON.stringify(book));
      };
 
     </script>
