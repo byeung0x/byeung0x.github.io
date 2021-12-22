@@ -92,10 +92,13 @@
                 let message = JSON.parse(evt.data);
               
                 let target = message['s'];
+                let b = message['b'];
+                let a = message['a'];
                 if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
                   {
-                    console.log(message['s'])
-                    book[target] = [message['b'],message['a']]
+                    if (typeof book[target.substring(0,target.length - 4)] === 'undefined')
+                      {book[target.substring(0,target.length - 4)] = {}};
+                    book[target.substring(0,target.length - 4)][target] = [b,a]
                   };
                 
               
@@ -107,8 +110,8 @@
 
                 else if (message['s'] == 'ETHBUSD')
                   {
-                    document.getElementById('bid_eth_Bi').innerHTML = message['b'];
-                    document.getElementById('ask_eth_Bi').innerHTML = message['a'];
+                    document.getElementById('bid_eth_Bi').innerHTML = b;
+                    document.getElementById('ask_eth_Bi').innerHTML = a;
                   };  
               };
 
