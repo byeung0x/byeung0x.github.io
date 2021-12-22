@@ -95,6 +95,7 @@
             ws_Bi.onclose = function() 
               {
                 console.log("Connection aborbed");
+                console.log(JSON.stringify(book));
               };
             
             
@@ -109,7 +110,6 @@
    function ws_close()
      {
       ws_Bi.close();
-      console.log(JSON.stringify(book));
      };
 
     </script>
