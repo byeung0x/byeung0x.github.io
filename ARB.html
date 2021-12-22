@@ -69,7 +69,7 @@ function ws_open()
             if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
               {
 
-                if (typeof book[coin] === 'undefined')
+                if (typeof book[coin] == 'undefined')
                   {
                     book[coin] = {}
                   };
@@ -78,7 +78,7 @@ function ws_open()
 
                     if (typeof book[coin][coin + "BUSD"] != 'undefined' && typeof book[coin][coin + "USDT"] != 'undefined')
                       {
-                        if (typeof document.getElementById("id", "LBUSD_" + coin) === 'undefined')
+                        if (typeof document.getElementById("id", "LBUSD_" + coin) == 'undefined')
                           {
                             let row = table.insertRow(table.rows.length);
                             let cell1 = row.insertCell(0);
