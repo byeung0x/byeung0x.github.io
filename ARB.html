@@ -33,39 +33,6 @@
         <th>Ask</th>
         <th>Last updated</th>
       </tr>
-      <tr>
-        <td id="coin_btc">BTC/USD</td>
-        <td id="bid_btc"></td>
-        <td id="ask_btc"></td>
-        <td id="time_btc"></td>
-      </tr>
-      <tr>
-        <td id="coin_eth">ETH/USD</td>
-        <td id="bid_eth"></td>
-        <td id="ask_eth"></td>
-        <td id="time_eth"></td>
-      </tr>
-
-      <tr>
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ></td>
-      </tr>
-      
-      <tr>
-        <td id="coin_btc_Bi">BTC/USD</td>
-        <td id="bid_btc_Bi"></td>
-        <td id="ask_btc_Bi"></td>
-        <td id="time_btc_Bi"></td>
-      </tr>
-      <tr>
-        <td id="coin_eth_Bi">ETH/USD</td>
-        <td id="bid_eth_Bi"></td>
-        <td id="ask_eth_Bi"></td>
-        <td id="time_eth_Bi"></td>
-      </tr><br>
-      
     </table>
     
 
@@ -92,32 +59,35 @@
             ws_Bi.onmessage = function (evt) 
               {
                 let message = JSON.parse(evt.data);
-              
+                
+
                 let target = message['s'];
+                let coin = target.substring(0,target.length - 4);
                 let b = message['b'];
                 let a = message['a'];
                 
                 if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
                   {
-                    if (typeof book[target.substring(0,target.length - 4)] === 'undefined')
+                    if (typeof book[coin] === 'undefined')
                       {
-                        book[target.substring(0,target.length - 4)] = {}
+                        book[coin] = {}
                         
                         let row = table.insertRow(table.rows.length+1);
                         let cell1 = row.insertCell(0);
                         cell1.setAttribute("id", "coin_" + target.substring(0,target.length - 4));
                         let cell2 = row.insertCell(1);
-                        cell2.setAttribute("id", "b_" + target.substring(0,target.length - 4));
+                        cell2.setAttribute("id", "LBUSD_" + target.substring(0,target.length - 4));
                         let cell3 = row.insertCell(2);
-                        cell3.setAttribute("id", "a_" + target.substring(0,target.length - 4));
+                        cell3.setAttribute("id", "LUSDT_" + target.substring(0,target.length - 4));
                         let cell4 = row.insertCell(3);
                         cell4.setAttribute("id", "t_" + target.substring(0,target.length - 4));
                         
                         cell1.innerHTML = target.substring(0,target.length - 4);
                       };
-                    book[target.substring(0,target.length - 4)][target] = [b,a];
-                    document.getElementById("id", "b_" + target.substring(0,target.length - 4)).innerHTML = book[target.substring(0,target.length - 4)][target][0];
-                    document.getElementById("id", "a_" + target.substring(0,target.length - 4)).innerHTML = book[target.substring(0,target.length - 4)][target][1]
+                    book[coin][target] = [b,a];
+                    document.getElementById("id", "LBUSD_" + coin).innerHTML = book[coin][coin + "USDT"][0] / (book[coin][coin + "BUSD"][1] / book.BUSD.BUSDUSDT[1]); 
+                    
+                    document.getElementById("id", "LUSDT_" + coin).innerHTML = book[coin][target][1]
                   };
                 
               
