@@ -91,6 +91,7 @@ function ws_open()
                         if (LUSDT > 0 || LBUSD > 0)
                           {
                             let row = table.insertRow(table.rows.length);
+                            row.setAttribute("id", "table_" + coin);
                             let cell1 = row.insertCell(0);
                             cell1.setAttribute("id", "coin_" + coin);
                             cell1.innerHTML = coin;
