@@ -46,7 +46,8 @@
 let ws = '';
 var book = {};
 const table = document.getElementById("CoinList");
-
+let kill_switch = false;
+  
 function ws_initiate() 
   {
     if ("WebSocket" in window)
@@ -117,10 +118,14 @@ function ws_initiate()
         ws_Bi.onclose = function() 
           {
             console.log("Binance websocket connection aborbed");
-            ws_Bi = null
-            setTimeout(ws_initiate, 5000)
-            console.log("Reconnecting Binance websocket...")
-          };
+            if (kill_switch == true)
+              {
+                kill_switch = false;
+                ws_Bi = null;
+                setTimeout(ws_initiate, 5000);
+                console.log("Reconnecting Binance websocket...")
+              }
+          }
       } 
     else
       {
@@ -130,6 +135,7 @@ function ws_initiate()
 
 function ws_close()
  {
+  kill_switch = true
   ws_Bi.close();
  };
 
