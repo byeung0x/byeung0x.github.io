@@ -113,7 +113,7 @@ function ws_initiate()
                         
                     if (!document.getElementById("coin_" + coin))
                       {
-                        if (LUSDT > 0.99 || LBUSD > 0.99)
+                        if (LUSDT > 1 || LBUSD > 1)
                           {
                             let row = table.insertRow(table.rows.length);
                             row.setAttribute("id", "row_" + coin);
@@ -128,7 +128,7 @@ function ws_initiate()
                             cell4.setAttribute("id", "t_" + coin)
                           }
                       }
-                    else if (LUSDT < 0.98 && LBUSD < 0.98)
+                    else if (LUSDT < 0.999 && LBUSD < 0.999)
                       {
                         document.getElementById("row_" + coin).remove()
                       }
