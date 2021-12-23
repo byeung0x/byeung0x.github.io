@@ -61,6 +61,7 @@ th {
 let ws = '';
 var book = {};
 let ws_Bi = null
+let Bi_status = document.getElementById("existing_")
 const table = document.getElementById("CoinList");
 let kill_switch = false;
   
@@ -71,16 +72,16 @@ function ws_initiate()
         if (ws_Bi == null)
           {
             ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
-            document.getElementById("existing_").innerHTML = ""
           }
         else
           {
-            document.getElementById("existing_").innerHTML = "Please close previous connection first.";
+            Bi_status.innerHTML = "Please close previous connection first.";
             return
           };
 
         ws_Bi.onopen = function() 
           {
+            Bi_status.innerHTML = "Websocket data Active."
             console.log("Subscribing Binance market data...");
           };
 
@@ -142,6 +143,7 @@ function ws_initiate()
 
         ws_Bi.onclose = function() 
           {
+            Bi_status.innerHTML = "Websocket Closed."
             console.log("Binance websocket connection aborbed");
             if (kill_switch == true)
               {
@@ -163,6 +165,7 @@ function ws_initiate()
 
 function ws_close()
  {
+  Bi_status.innerHTML = "Closing websocket data stream."
   kill_switch = true;
   ws_Bi.close();
   ws_Bi = null
