@@ -64,6 +64,7 @@ let ws_Bi = null
 let Bi_status = document.getElementById("existing_")
 const table = document.getElementById("CoinList");
 let kill_switch = false;
+let id = -1;
   
 function ws_initiate() 
   {
@@ -95,7 +96,7 @@ function ws_initiate()
             let coin = target.substring(0,target.length - 4);
             let b = message['b'];
             let a = message['a'];
-
+            
             if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
               {
 
@@ -126,6 +127,7 @@ function ws_initiate()
                             cell3.setAttribute("id", "LUSDT_" + coin);
                             let cell4 = row.insertCell(3);
                             cell4.setAttribute("id", "t_" + coin)
+
                           }
                       }
                     else if (LUSDT < 0.999 && LBUSD < 0.999)
@@ -135,7 +137,8 @@ function ws_initiate()
                     else
                       { 
                         document.getElementById("LUSDT_" + coin).innerHTML = LUSDT.toFixed(4); 
-                        document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4)
+                        document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4);
+                        document.getElementById("t_" + coin).innerHTML = new Date()
                       }
                   }     
                }
