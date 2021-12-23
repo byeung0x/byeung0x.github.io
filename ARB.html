@@ -43,7 +43,7 @@ th {
     <h1>Get Crypto Price</h1>
 
     <button id="open_ws-btn" onclick="javascript:ws_initiate()">Get FTX price</button>
-
+    <p id="existing_"></p>
     <button id="close_ws-btn" onclick="javascript:ws_close()">Stop streaming</button>
     <table id="CoinList">
       <tr>
@@ -60,14 +60,24 @@ th {
 <script>
 let ws = '';
 var book = {};
+let ws_Bi = null
 const table = document.getElementById("CoinList");
 let kill_switch = false;
   
 function ws_initiate() 
   {
     if ("WebSocket" in window)
-      {
-        ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
+      { 
+        if (ws_Bi = null)
+          {
+            ws_Bi = new WebSocket("wss://stream.binance.com:9443/ws/!bookTicker");
+            document.getElementById["existing_"].innerHTML = ""
+          }
+        else
+          {
+            document.getElementById["existing_"].innerHTML = "Please close previous connection first.";
+            return
+          };
 
         ws_Bi.onopen = function() 
           {
@@ -153,8 +163,9 @@ function ws_initiate()
 
 function ws_close()
  {
-  kill_switch = true
+  kill_switch = true;
   ws_Bi.close();
+  ws_Bi = null
  };
 
 </script>
