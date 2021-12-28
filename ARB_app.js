@@ -113,3 +113,13 @@ function ws_close()
   ws_Bi.close();
   ws_Bi = null
  };
+
+<!-- function 2 : make account balance -->
+const Binance = require('node-binance-api');
+const binance = new Binance().options({
+  APIKEY: '7k1hK1huz5edd2EgnLJsK4OSPKncq2J9gkVK1rQ5IXcpB2PdmiMnEeof9fwNSIYc',
+  APISECRET: 'bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD'
+});
+
+<!-- 7k1hK1huz5edd2EgnLJsK4OSPKncq2J9gkVK1rQ5IXcpB2PdmiMnEeof9fwNSIYc bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD 1640679251344577451 testnet binance -->
+
