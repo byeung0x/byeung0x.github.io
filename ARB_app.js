@@ -1,4 +1,3 @@
-let ws = '';
 var book = {};
 let ws_Bi = null
 let Bi_status = document.getElementById("existing_")
