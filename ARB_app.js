@@ -121,5 +121,11 @@ const binance = new Binance().options({
   APISECRET: 'bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD'
 });
 
+binance.balance((error, balances) => {
+  if ( error ) return console.error(error);
+  console.info("balances()", balances);
+  console.info("ETH balance: ", balances.ETH.available);
+});
+
 <!-- 7k1hK1huz5edd2EgnLJsK4OSPKncq2J9gkVK1rQ5IXcpB2PdmiMnEeof9fwNSIYc bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD 1640679251344577451 testnet binance -->
 
