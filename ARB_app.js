@@ -114,17 +114,14 @@ function ws_close()
  };
 
 <!-- function 2 : make account balance -->
-const Binance = require('node-binance-api');
-const binance = new Binance().options({
-  APIKEY: '7k1hK1huz5edd2EgnLJsK4OSPKncq2J9gkVK1rQ5IXcpB2PdmiMnEeof9fwNSIYc',
-  APISECRET: 'bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD'
-});
+const { Spot } = require('@binance/connector')
 
-binance.balance((error, balances) => {
-  if ( error ) return console.error(error);
-  console.info("balances()", balances);
-  console.info("ETH balance: ", balances.ETH.available);
-});
+const apiKey = '7k1hK1huz5edd2EgnLJsK4OSPKncq2J9gkVK1rQ5IXcpB2PdmiMnEeof9fwNSIYc'
+const apiSecret = 'bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD'
+const client = new Spot(apiKey, apiSecret)
+
+// Get account information
+client.account().then(response => client.logger.log(response.data))
 
 <!-- 7k1hK1huz5edd2EgnLJsK4OSPKncq2J9gkVK1rQ5IXcpB2PdmiMnEeof9fwNSIYc bphe59faHE8nV5oNyb1YCVfBXgZqSJ6fRBPrSFVgVS3T9GlIPFLZhn7qub3ClDAD 1640679251344577451 testnet binance -->
 
