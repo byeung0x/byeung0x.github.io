@@ -50,7 +50,8 @@
 	<p>
 	<button onclick="clear_once()">CLEAR</button>
   	<button onclick="run_once()">BET 1 time!</button>
-	<button onclick="run_1000()">BET 1000 times!</button>
+	<button onclick="auto_run()">Bet automatically</button>
+	<button onclick="stop_run()">Stop the auto run</button>
 	</p>
 
 	<p>
@@ -95,11 +96,16 @@ function run_once()
 		}
 	};
 
-function run_1000() 
+function auto_run() 
 	{
-    int=self.setInterval("clock()",500)
+    		int=setInterval("run_once()",500)
     
-	for (let i=0;i<1000;i++) {setTimeout(run_once,1000)}
+	};
+
+function stop_run() 
+	{
+    		clearInterval(int)
+    
 	};
 	
 </script>
