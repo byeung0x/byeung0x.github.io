@@ -79,7 +79,7 @@ function reset_once() {
 
 function run_once() 
 	{
-    if (parseFloat(capital.innerHTML) < parseFloat(bet_dollar.value) | !(parseFloat(capital.innerHTML > 0)))
+    if (parseFloat(capital.innerHTML) < parseFloat(bet_dollar.value) || !(parseFloat(capital.innerHTML) > 0))
     	{capital.innerHTML = "BURST"}
     
 	else if (Math.random() < 0.6) 
