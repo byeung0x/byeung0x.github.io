@@ -50,13 +50,37 @@
 </body>
 
 <script>
-document.getElementById("win_rate").innerHTML = "60%"
-document.getElementById("capital").innerHTML = "100"	
+win_rate = document.getElementById("win_rate")= "60%"
+win_rate.innerHTML = "60%"
 	
+capital = document.getElementById("capital").innerHTML
+capital.innerHTML = "100"
+	
+bet_dollar = document.getElementById("bet_dollar")
+result = document.getElementById("result")
+
 function clear_once() {
-	document.getElementById("bet_dollar").value = "0"}	;
+	bet_dollar.value = "0"}	;
 	
 function reset_once() {
-	document.getElementById("capital").innerHTML = "100";
-	document.getElementById("bet_dollar").value = "0"}	;
+	capital.innerHTML = "100";
+	bet_dollar.value = "0"}	;
+
+function run_once() {
+	if (Math.random() < win_rate) 
+	{
+		win_status = true
+		capital += bet_dollar.value
+	}
+	else 
+	{
+		win_status = false
+		capital -= bet_dollar.value
+	}
+
+function run_1000() 
+	{
+		for (let i=0;i<1000;i++) {setTimeout(run_once,100)}
+	}
+	
 </script>
