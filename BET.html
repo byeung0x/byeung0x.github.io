@@ -50,21 +50,21 @@
 </body>
 
 <script>
-win_rate = document.getElementById("win_rate")
-win_rate.innerHTML = "60%"
+win_rate = document.getElementById("win_rate").innerHTML
+win_rate = "60%"
 	
-capital = document.getElementById("capital")
-capital.innerHTML = "100"
+capital = document.getElementById("capital").innerHTML
+capital = 100
 	
-bet_dollar = document.getElementById("bet_dollar")
-result = document.getElementById("result")
+bet_dollar = document.getElementById("bet_dollar").value
+result = document.getElementById("result").innerHTML
 
 function clear_once() {
-	bet_dollar.value = "0"}	;
+	bet_dollar = "0"}	;
 	
 function reset_once() {
-	capital.innerHTML = "100";
-	bet_dollar.value = "0"}	;
+	capital = "100";
+	bet_dollar = "0"}	;
 
 function run_once() 
 	{
@@ -72,11 +72,13 @@ function run_once()
 		{
 			win_status = true
 			capital += bet_dollar.value
+			result = "WIN!"
 		}
 		else 
 		{
 			win_status = false
 			capital -= bet_dollar.value
+			result = "Loss:)"
 		}
 	}
 
