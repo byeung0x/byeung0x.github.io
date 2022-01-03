@@ -25,12 +25,12 @@
 	
 	<p>
 		<body>Today's Win Rate:</body>
-		<body id="win_rate" value="0.6">60%</body>
+		<p id="win_rate" value="0.6">60%</p>
 	</p>
     
     <p>
 		<body>Result:</body>
-		<body id="result"></body>
+		<p id="result"></p>
 	</p>
 
 	<p>
@@ -39,12 +39,12 @@
     
     <p>
 	<body>Capital:</body>
-	<body id="capital" value="100">100</body>
+	<p id="capital">100</p>
     </p>
 	
     <p>
 	<body>Dollar per bet:</body>
-	<input type="text" id="bet_dollar" value="0">
+	<input type="text" id="bet_dollar" value=1>
 	</p>
 
 	<p>
@@ -62,7 +62,6 @@
 
 <script>
 win_rate = document.getElementById("win_rate");
-
 capital = document.getElementById("capital");
 
 	
@@ -70,31 +69,32 @@ bet_dollar = document.getElementById("bet_dollar");
 result = document.getElementById("result");
 
 function clear_once() {
-	bet_dollar.value = "0"}	;
+	bet_dollar.value = "1"}	;
 	
 function reset_once() {
-	capital.innerHTML = capital.value;
-	bet_dollar.value = "0"}	;
+	bet_dollar.value = "1"
+    capital.innerHTML = 100;
+	}	;
 
 function run_once() 
 	{
-	if (Math.random() < win_rate.value) 
+	if (Math.random() < 0.6) 
 		{
 			win_status = true
-			capital.innerHTML += bet_dollar.value
+			capital.innerHTML = parseFloat(capital.innerHTML) + parseFloat(bet_dollar.value)
 			result.innerHTML = "WIN!"
 		}
 		else 
 		{
 			win_status = false
-			capital.innerHTML -= bet_dollar.value
+			capital.innerHTML = parseFloat(capital.innerHTML) - parseFloat(bet_dollar.value)
 			result.innerHTML = "Loss:)"
 		}
 	};
 
 function run_1000() 
 	{
-	for (let i=0;i<1000;i++) {setTimeout(run_once,100)}
+	for (let i=0;i<1000;i++) {setTimeout(run_once,1000)}
 	};
 	
 </script>
