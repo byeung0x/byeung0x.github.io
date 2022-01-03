@@ -54,15 +54,15 @@
 </body>
 
 <script>
-win_rate = document.getElementById("win_rate")
-win_rate.value = 0.6
-win_rate.innerHTML = win_rate.value * 100 + "%"
+win_rate = document.getElementById("win_rate");
+win_rate.value = 0.6;
+win_rate.innerHTML = win_rate.value * 100 + "%";
 	
-capital = document.getElementById("capital")
-capital.innerHTML = 100
+capital = document.getElementById("capital");
+capital.innerHTML = 100;
 	
-bet_dollar = document.getElementById("bet_dollar")
-result = document.getElementById("result")
+bet_dollar = document.getElementById("bet_dollar");
+result = document.getElementById("result");
 
 function clear_once() {
 	bet_dollar.value = "0"}	;
@@ -85,11 +85,11 @@ function run_once()
 			capital.innerHTML -= bet_dollar.value
 			result.innerHTML = "Loss:)"
 		}
-	}
+	};
 
 function run_1000() 
 	{
 	for (let i=0;i<1000;i++) {setTimeout(run_once,100)}
-	}
+	};
 	
 </script>
