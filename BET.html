@@ -33,6 +33,11 @@
 		<p id="result"></p>
 	</p>
 
+   <p>
+		<body>Total bets:</body>
+		<p id="bets_count">0</p>
+	</p>
+    
 	<p>
 	<h2>Your wallet status:</h2>
 	</p>
@@ -80,7 +85,7 @@ function reset_once() {
 function run_once() 
 	{
     if (parseFloat(capital.innerHTML) < parseFloat(bet_dollar.value) || !(parseFloat(capital.innerHTML) > 0))
-    	{capital.innerHTML = "BURST"}
+    	{capital.innerHTML = "BURST";return}
     
 	else if (Math.random() < 0.6) 
 		{
@@ -94,11 +99,13 @@ function run_once()
 			capital.innerHTML = parseFloat(capital.innerHTML) - parseFloat(bet_dollar.value)
 			result.innerHTML = "Loss:)"
 		}
+    bets_count.innerHTML = parseFloat(bets_count.innerHTML) + 1;
 	};
+    
 
 function auto_run() 
 	{
-    		int=setInterval("run_once()",500)
+    		int=setInterval("run_once()",100)
     
 	};
 
