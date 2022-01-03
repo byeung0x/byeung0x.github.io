@@ -55,7 +55,8 @@
 
 <script>
 win_rate = document.getElementById("win_rate")
-win_rate.innerHTML = "60%"
+win_rate.value = 0.6
+win_rate.innerHTML = win_rate.value * 100 + "%"
 	
 capital = document.getElementById("capital")
 capital.innerHTML = 100
