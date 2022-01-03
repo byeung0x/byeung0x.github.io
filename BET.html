@@ -39,8 +39,13 @@
 
 	<p>
 	<button onclick="clear_once()">CLEAR</button>
-  <button onclick="run_once()">BET 1 time!</button>
+  	<button onclick="run_once()">BET 1 time!</button>
 	<button onclick="run_1000()">BET 1000 times!</button>
+	</p>
+
+	<p>
+	<button onclick="reset_once()">RESET</button>
+
 	</p>
 		
 </body>
@@ -48,4 +53,8 @@
 <script>
 document.getElementById("win_rate").innerHTML = "60%"
 document.getElementById("capital").innerHTML = "100"	
+	
+function clear_once() {
+	document.getElementById("capital").innerHTML = "100";
+	document.getElementById("capital").innerHTML = "0"}	;
 </script>
