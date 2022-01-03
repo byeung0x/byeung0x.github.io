@@ -66,21 +66,23 @@ function reset_once() {
 	capital.innerHTML = "100";
 	bet_dollar.value = "0"}	;
 
-function run_once() {
+function run_once() 
+	{
 	if (Math.random() < win_rate) 
-	{
-		win_status = true
-		capital += bet_dollar.value
-	}
-	else 
-	{
-		win_status = false
-		capital -= bet_dollar.value
+		{
+			win_status = true
+			capital += bet_dollar.value
+		}
+		else 
+		{
+			win_status = false
+			capital -= bet_dollar.value
+		}
 	}
 
 function run_1000() 
 	{
-		for (let i=0;i<1000;i++) {setTimeout(run_once,100)}
+	for (let i=0;i<1000;i++) {setTimeout(run_once,100)}
 	}
 	
 </script>
