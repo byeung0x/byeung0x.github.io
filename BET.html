@@ -78,8 +78,9 @@ function clear_once() {
 	bet_dollar.value = "1"}	;
 	
 function reset_once() {
-	bet_dollar.value = "1"
-    capital.innerHTML = 100;
+	bet_dollar.value = "1";
+    	capital.innerHTML = 100;
+	bets_count.innerHTML = 0
 	}	;
 
 function run_once() 
@@ -89,14 +90,14 @@ function run_once()
     
 	else if (Math.random() < 0.6) 
 		{
-			win_status = true
-			capital.innerHTML = parseFloat(capital.innerHTML) + parseFloat(bet_dollar.value)
+			win_status = true;
+			capital.innerHTML = parseFloat(capital.innerHTML) + parseFloat(bet_dollar.value);
 			result.innerHTML = "WIN!"
 		}
 		else 
 		{
-			win_status = false
-			capital.innerHTML = parseFloat(capital.innerHTML) - parseFloat(bet_dollar.value)
+			win_status = false;
+			capital.innerHTML = parseFloat(capital.innerHTML) - parseFloat(bet_dollar.value);
 			result.innerHTML = "Loss:)"
 		}
     bets_count.innerHTML = parseFloat(bets_count.innerHTML) + 1;
