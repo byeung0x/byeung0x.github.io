@@ -103,15 +103,18 @@ function run_once()
     bets_count.innerHTML = parseFloat(bets_count.innerHTML) + 1;
 	};
     
-
+let auto_io = false
 function auto_run() 
 	{
+		if (auto_io != false) {return};
+		auto_io = true;
     		int=setInterval("run_once()",100)
     
 	};
 
 function stop_run() 
 	{
+		auto_io = false;
     		clearInterval(int)
     
 	};
