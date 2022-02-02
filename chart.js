@@ -34,8 +34,8 @@ function csvToSeries(text,symbol) {
 		
 	});
 	return [
-		{name: 'Black', points: black},
-		{name: 'White', points: white},
+		{name: 'GOOG', points: GOOG},
+		
 	];
 }
 
