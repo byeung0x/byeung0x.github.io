@@ -27,7 +27,7 @@ function csvToSeries(text,symbol) {
 	let dataAsJson = JSC.csv2Json(text);
 	let GOOG = [], GOOGL = [];
 	dataAsJson.forEach(function (row) {
-		//add either to Black, White arrays, or discard.
+		//add either to GOOG, GOOGL arrays, or discard.
 		
 		GOOG.push({x: row.Date, y: row[price]});
 		
