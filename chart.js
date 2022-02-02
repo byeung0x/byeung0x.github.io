@@ -5,8 +5,7 @@ let series = {};
 		
 
 
-fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv',
-      {'content-type': 'text/csv;charset=UTF-8',cache: 'force-cache',mode: 'no-cors'})
+fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv')
 	.then(function (response) {
 		return response.text();
 	})
