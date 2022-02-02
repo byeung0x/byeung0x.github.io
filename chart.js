@@ -6,7 +6,7 @@ fetch('https://query1.finance.yahoo.com/v7/finance/download/' & symbol & '?perio
 		return response.text();
 	})
 	.then(function (text) {
-		let series.symbol = csvToSeries(text,symbol);});
+		let series[symbol] = csvToSeries(text,symbol);});
 		
 
 
