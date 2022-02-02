@@ -11,6 +11,7 @@ fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv',
 		return response.text();
 	})
 	.then(function (text) {
+		console.log(text);
 		let series = csvToSeries(text);
 		renderChart(series);
 	})
@@ -23,8 +24,6 @@ function csvToSeries(text,symbol) {
 	const price = 'Close';
 	let dataAsJson = JSC.csv2Json(text);
 	let GOOG = [], GOOGL = [];
-	console.log(text);
-	console.log(dataAsJson);
 	dataAsJson.forEach(function (row) {
 		//add either to GOOG, GOOGL arrays, or discard.
 		
