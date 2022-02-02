@@ -1,12 +1,7 @@
 // get GOOG and GOOGL price data from Yahoo finance
 let symbol = 'GOOG';
 let series = {};
-fetch('https://query1.finance.yahoo.com/v7/finance/download/' & symbol & '?period1=1000073600&period2=1999960000&interval=1d&events=history&includeAdjustedClose=true')
-	.then(function (response) {
-		return response.text();
-	})
-	.then(function (text) {
-		series[symbol] = csvToSeries(text,symbol);});
+
 		
 
 
