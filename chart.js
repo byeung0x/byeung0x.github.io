@@ -5,7 +5,7 @@ let series = {};
 		
 
 
-fetch('https://query1.finance.yahoo.com/v7/finance/download/GOOGL?period1=1000073600&period2=1999960000&interval=1d&events=history&includeAdjustedClose=true',
+fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv',
       {'content-type': 'text/csv;charset=UTF-8',cache: 'force-cache',mode: 'no-cors'})
 	.then(function (response) {
 		return response.text();
