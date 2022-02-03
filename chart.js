@@ -26,7 +26,7 @@ function csvToSeries(text,symbol) {
 	dataAsJson.forEach(function (row) {
 		//add either to GOOG, GOOGL arrays, or discard.
 		
-		GOOG.push({x: row.t, y: row[price]});
+		GOOG.push({x: new Date(row.t), y: row[price]});
 		
 		
 	});
