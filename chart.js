@@ -6,7 +6,7 @@ let series = {};
 
 //https://query1.finance.yahoo.com/v7/finance/download/GOOG?period1=1000073600&period2=1999946400&interval=1d&events=history&includeAdjustedClose=true
 fetch('https://query1.finance.yahoo.com/v7/finance/download/GOOG?period1=1000073600&period2=1999946400&interval=1d&events=history&includeAdjustedClose=true',
-      {credentials: 'omit'})
+      {mode: 'cors', credentials: 'omit'})
 	.then(function (response) {
 		return response.text();
 	})
