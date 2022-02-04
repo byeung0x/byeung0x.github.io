@@ -31,6 +31,7 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2000-07-22/2022-0
 	.catch(function (error) {
 		//Something went wrong
 		console.log(error);
+	});
 
 function csvToSeries(text,symbol) {
 	const date = 't', price = 'c';
