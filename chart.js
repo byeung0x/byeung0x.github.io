@@ -20,13 +20,13 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2020-07-22/2022-07
 	});
 
 function csvToSeries(text,symbol) {
-	const price = 'c';
+	const date = 't', price = 'c';
 	let dataAsJson = text.results;
 	let GOOG = [], GOOGL = [];
 	dataAsJson.forEach(function (row) {
 		//add either to GOOG, GOOGL arrays, or discard.
 		
-		GOOG.push({x: new Date(dataAsJson[row].t), y: dataAsJson[row][price]});
+		GOOG.push({x: new Date(dataAsJson[row][date]), y: dataAsJson[row][price]});
 		
 		
 	});
