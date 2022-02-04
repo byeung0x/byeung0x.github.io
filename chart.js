@@ -41,13 +41,13 @@ function renderChart(series) {
 	JSC.Chart('chartDiv', {
 		title_label_text: 'GOOG v GOOGL spread',
 		annotations: [{
-			label_text: 'Source: Yahoo Finance',
+			label_text: 'Source: Polygon.io',
 			position: 'bottom left'
 		}],
 		legend_visible: false,
 		xAxis_crosshair_enabled: true,
 		defaultSeries_firstPoint_label_text: '<b>%seriesName</b>',
-		defaultPoint_tooltip: '%seriesName <b>%yValue</b> years',
+		defaultPoint_tooltip: '%seriesName $<b>%yValue</b>',
 		series: series
 	});
 }
