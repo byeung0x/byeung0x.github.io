@@ -21,7 +21,7 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2020-07-22/2022-07
 
 function csvToSeries(text,symbol) {
 	const price = 'c';
-	//let dataAsJson = JSC.csv2Json(text);
+	let dataAsJson = text.results;
 	let GOOG = [], GOOGL = [];
 	dataAsJson.forEach(function (row) {
 		//add either to GOOG, GOOGL arrays, or discard.
