@@ -14,10 +14,12 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2000-07-22/2022-07
 		let series = csvToSeries(text,'GOOG');
 		
 	})
-	.then(function (response) {
-		fetch('https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2000-07-22/2022-07-22?adjusted=false&sort=asc&apiKey=Rm93foblBfnsRG23iFqGrjucizAi_Itd');
-		return response;
-	})
+	.catch(function (error) {
+		//Something went wrong
+		console.log(error);
+	});
+
+fetch('https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2000-07-22/2022-07-22?adjusted=false&sort=asc&apiKey=Rm93foblBfnsRG23iFqGrjucizAi_Itd')
 	.then(function (response) {
 		return response.json();
 	})
@@ -29,7 +31,6 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2000-07-22/2022-07
 	.catch(function (error) {
 		//Something went wrong
 		console.log(error);
-	});
 
 function csvToSeries(text,symbol) {
 	const date = 't', price = 'c';
