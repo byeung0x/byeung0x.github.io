@@ -5,7 +5,7 @@ let series = {};
 //		
 //Rm93foblBfnsRG23iFqGrjucizAi_Itd
 //https://query1.finance.yahoo.com/v7/finance/download/GOOG?period1=1000073600&period2=1999946400&interval=1d&events=history&includeAdjustedClose=true
-fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2020-07-22/2022-07-22?adjusted=false&sort=asc&apiKey=Rm93foblBfnsRG23iFqGrjucizAi_Itd')
+fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2000-07-22/2022-07-22?adjusted=false&sort=asc&apiKey=Rm93foblBfnsRG23iFqGrjucizAi_Itd')
 	.then(function (response) {
 		return response.json();
 	})
