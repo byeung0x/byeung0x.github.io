@@ -14,7 +14,7 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2000-07-22/2022-07
 		let series = csvToSeries(text,'GOOG');
 		
 	})
-	.then(function (fetch) {
+	.then(function (response) {
 		fetch('https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2000-07-22/2022-07-22?adjusted=false&sort=asc&apiKey=Rm93foblBfnsRG23iFqGrjucizAi_Itd');
 		return response;
 	})
