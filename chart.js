@@ -11,7 +11,16 @@ fetch('https://api.polygon.io/v2/aggs/ticker/GOOG/range/1/day/2000-07-22/2022-07
 	})
 	.then(function (text) {
 		//console.log(text);
-		let series = csvToSeries(text);
+		let series = csvToSeries(text,'GOOG');
+		
+	})
+	.then(fetch('https://api.polygon.io/v2/aggs/ticker/GOOGL/range/1/day/2000-07-22/2022-07-22?adjusted=false&sort=asc&apiKey=Rm93foblBfnsRG23iFqGrjucizAi_Itd'))
+	.then(function (response) {
+		return response.json();
+	})
+	.then(function (text) {
+		//console.log(text);
+		let series = csvToSeries(text,'GOOGL');
 		renderChart(series);
 	})
 	.catch(function (error) {
@@ -26,13 +35,16 @@ function csvToSeries(text,symbol) {
 	console.log(dataAsJson);
 	dataAsJson.forEach(function (row) {
 		//add either to GOOG, GOOGL arrays, or discard.
-		
-		GOOG.push({x: new Date(row[date]), y: row[price]});
+		if (symbol=='GOOG'){
+		GOOG.push({x: new Date(row[date]), y: row[price]});}
+		else{
+		GOOGL.push({x: new Date(row[date]), y: row[price]});}
 		
 		
 	});
 	return [
 		{name: 'GOOG', points: GOOG},
+		{name: 'GOOGL', points: GOOGL},
 		
 	];
 }
