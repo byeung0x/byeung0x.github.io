@@ -78,6 +78,7 @@ function ws_initiate()
                         document.getElementById("LUSDT_" + coin).innerHTML = LUSDT.toFixed(4); 
                         document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4);
                         document.getElementById("t_" + coin).innerHTML = new Date()
+                        document.getElementById("master_time").innerHTML = new Date()
                       }
                   }     
                }
