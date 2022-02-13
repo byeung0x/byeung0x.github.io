@@ -38,7 +38,7 @@ function ws_initiate()
             
             if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
               {
-
+                document.getElementById("master_time").innerHTML = "Last Updated" + new Date()
                 if (typeof book[coin] == 'undefined')
                   {
                     book[coin] = {}
@@ -78,7 +78,7 @@ function ws_initiate()
                         document.getElementById("LUSDT_" + coin).innerHTML = LUSDT.toFixed(4); 
                         document.getElementById("LBUSD_" + coin).innerHTML = LBUSD.toFixed(4);
                         document.getElementById("t_" + coin).innerHTML = new Date()
-                        document.getElementById("master_time").innerHTML = "Last Updated" + new Date()
+                        
                       }
                   }     
                }
