@@ -38,7 +38,7 @@ function ws_initiate()
             
             if (target.substring(target.length - 4).includes("BUSD") || target.substring(target.length - 4).includes("USDT"))
               {
-                document.getElementById("master_time").innerHTML = "Last Updated" + new Date()
+                document.getElementById("master_time").innerHTML = "Last Updated " + new Date()
                 if (typeof book[coin] == 'undefined')
                   {
                     book[coin] = {}
