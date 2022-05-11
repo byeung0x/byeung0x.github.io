@@ -34,13 +34,13 @@
         <th>Last updated</th>
       </tr>
       <tr>
-        <td id="coin_btc">BTC/USD</td>
+        <td id="coin_btc">LUNA/USD</td>
         <td id="bid_btc"></td>
         <td id="ask_btc"></td>
         <td id="time_btc"></td>
       </tr>
       <tr>
-        <td id="coin_eth">ETH/USD</td>
+        <td id="coin_eth">LUNA-PERP</td>
         <td id="bid_eth"></td>
         <td id="ask_eth"></td>
         <td id="time_eth"></td>
@@ -54,13 +54,13 @@
       </tr>
       
       <tr>
-        <td id="coin_btc_Bi">BTC/USD</td>
+        <td id="coin_btc_Bi">LUNA/BUSD</td>
         <td id="bid_btc_Bi"></td>
         <td id="ask_btc_Bi"></td>
         <td id="time_btc_Bi"></td>
       </tr>
       <tr>
-        <td id="coin_eth_Bi">ETH/USD</td>
+        <td id="coin_eth_Bi">ETH/USDT</td>
         <td id="bid_eth_Bi"></td>
         <td id="ask_eth_Bi"></td>
         <td id="time_eth_Bi"></td>
@@ -84,8 +84,8 @@
             
             ws.onopen = function() 
               {
-                ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'BTC/USD'}));
-                ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'ETH/USD'}));
+                ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'LUNA/USD'}));
+                ws.send(JSON.stringify({'op': 'subscribe', 'channel': 'ticker', 'market': 'LUNA-PERP'}));
                 console.log("Subscribing BTC/USD market data...");
               };
 
@@ -94,14 +94,14 @@
                 var message = JSON.parse(evt.data);
                 console.log(message);
 
-                if (message['market'] == 'BTC/USD')
+                if (message['market'] == 'LUNA/USD')
                   {
                     document.getElementById('bid_btc').innerHTML = message['data']['bid'];
                     document.getElementById('ask_btc').innerHTML = message['data']['ask'];
                     document.getElementById('time_btc').innerHTML = Date(message['data']['time']);       
                   }
 
-                else if (message['market'] == 'ETH/USD')
+                else if (message['market'] == 'LUNA-PERP')
                   {
                     document.getElementById('bid_eth').innerHTML = message['data']['bid'];
                     document.getElementById('ask_eth').innerHTML = message['data']['ask'];
@@ -124,14 +124,14 @@
               {
                 var message = JSON.parse(evt.data);
               
-                if (message['s'] == 'BTCBUSD')
+                if (message['s'] == 'LUNABUSD')
                   {
                     console.log(message)
                     document.getElementById('bid_btc_Bi').innerHTML = message['b'];
                     document.getElementById('ask_btc_Bi').innerHTML = message['a'];
                   }
 
-                else if (message['s'] == 'ETHBUSD')
+                else if (message['s'] == 'LUNAUSDT')
                   {
                     console.log(message)
                     document.getElementById('bid_eth_Bi').innerHTML = message['b'];
